@@ -1,0 +1,11 @@
+[project]
+authors = ["Nikolai Bachkaikine <144275038+Sastrelli@users.noreply.github.com>"]
+channels = ["conda-forge"]
+description = "Add a short description here"
+name = "VU-ML-project"
+platforms = ["osx-arm64"]
+version = "0.1.0"
+
+[tasks]
+
+[dependencies]
