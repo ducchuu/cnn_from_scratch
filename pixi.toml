@@ -9,3 +9,5 @@ version = "0.1.0"
 [tasks]
 
 [dependencies]
+python = "3.12.2.*"
+pytorch = ">=2.5.1,<3"
