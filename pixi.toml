@@ -1,5 +1,5 @@
 [project]
-authors = ["Nikolai Bachkaikine <144275038+Sastrelli@users.noreply.github.com>"]
+# authors = [""]
 channels = ["conda-forge"]
 description = "Add a short description here"
 name = "VU-ML-project"
@@ -10,4 +10,6 @@ version = "0.1.0"
 
 [dependencies]
 python = "3.12.2.*"
-pytorch = ">=2.5.1,<3"
+numpy = ">=2.2.2,<3"
+matplotlib = ">=3.10.0,<4"
+pandas = ">=2.2.3,<3"
