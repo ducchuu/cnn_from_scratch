@@ -6,10 +6,11 @@ import torchvision.transforms as transforms  # Import image transformation tools
 import time
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib
 import os
 from datetime import datetime
 
-plt.use("Agg")
+matplotlib.use("Agg")
 
 # Define basic ResidualBlock
 # This is the core component of ResNet, implementing residual learning: H(x) = F(x) + x
