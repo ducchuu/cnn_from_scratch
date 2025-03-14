@@ -6,11 +6,9 @@ import torchvision.transforms as transforms  # Import image transformation tools
 import time
 import numpy as np
 import matplotlib.pyplot as plt
-import matplotlib
 import os
 from datetime import datetime
 
-matplotlib.use("Agg")
 
 # Define basic ResidualBlock
 # This is the core component of ResNet, implementing residual learning: H(x) = F(x) + x
@@ -604,31 +602,46 @@ def train(epochs=10):
     print("=" * 80)
 
     # Plot training and validation loss
+
     plt.figure(figsize=(12, 5))
+
+    # Convert training loss to NumPy array
+    train_loss_values = np.array([
+        sum(train_log["loss"][i * len(trainloader) : (i + 1) * len(trainloader)])
+        / len(trainloader)
+        for i in range(epochs)
+    ])
+
+    # Convert validation loss to NumPy array
+    val_loss_epochs = np.array(val_log["epoch"])
+    val_loss_values = np.array(val_log["loss"])
+
     plt.subplot(1, 2, 1)
     plt.plot(
-        range(1, epochs + 1),
-        [
-            sum(train_log["loss"][i * len(trainloader) : (i + 1) * len(trainloader)])
-            / len(trainloader)
-            for i in range(epochs)
-        ],
+        np.arange(1, epochs + 1),  # Ensure x-axis is a NumPy array
+        train_loss_values,
         label="Train",
     )
-    plt.plot(val_log["epoch"], val_log["loss"], label="Validation")
+    plt.plot(val_loss_epochs, val_loss_values, label="Validation")
     plt.title("Loss")
     plt.xlabel("Epoch")
     plt.ylabel("Loss")
     plt.legend()
 
-    # Plot training and validation accuracy
+    # Convert accuracy data to NumPy array
+    train_accuracy_values = np.array([
+        train_log["accuracy"][i * len(trainloader) - 1] for i in range(1, epochs + 1)
+    ])
+    val_accuracy_epochs = np.array(val_log["epoch"])
+    val_accuracy_values = np.array(val_log["accuracy"])
+
     plt.subplot(1, 2, 2)
     plt.plot(
-        range(1, epochs + 1),
-        [train_log["accuracy"][i * len(trainloader) - 1] for i in range(1, epochs + 1)],
+        np.arange(1, epochs + 1),
+        train_accuracy_values,
         label="Train",
     )
-    plt.plot(val_log["epoch"], val_log["accuracy"], label="Validation")
+    plt.plot(val_accuracy_epochs, val_accuracy_values, label="Validation")
     plt.title("Accuracy")
     plt.xlabel("Epoch")
     plt.ylabel("Accuracy (%)")
@@ -637,6 +650,7 @@ def train(epochs=10):
     plt.tight_layout()
     plt.savefig(f"{log_dir}/training_summary.png")
     plt.close()
+
 
     # Save training log
     import json
