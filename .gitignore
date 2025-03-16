@@ -3,6 +3,9 @@
 .pixi
 *.egg-info
 
+#nick
+hiden
+src/00_research/Nick/nick_ignore
 
 # Created by https://www.toptal.com/developers/gitignore/api/macos,windows,linux,visualstudiocode,python,jupyternotebooks
 # Edit at https://www.toptal.com/developers/gitignore?templates=macos,windows,linux,visualstudiocode,python,jupyternotebooks
