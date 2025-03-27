@@ -1,1 +1,3 @@
 local
+MNIST
+model_checkpoint.pt
